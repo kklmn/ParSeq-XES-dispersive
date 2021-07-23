@@ -1,0 +1,41 @@
+[Data]
+tree = ['20201112_b/entry10198']
+
+[20201112_b/entry10198]
+madeOf = silx:c:\ParSeq\parseq_XES_dispersive\data\20201112_b.h5::/entry10198
+madeOf_relative = silx:..\data\20201112_b.h5::/entry10198
+dataFormat = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:c:\\ParSeq\\parseq_XES_dispersive\\data\\NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:c:\\ParSeq\\parseq_XES_dispersive\\data\\NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
+dataFormat_relative = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:..\\data\\NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:..\\data\\NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
+suffix = None
+originNode = 3D elastic energy scan
+terminalNode = None
+colorTag = 1
+color = #1f77b4
+;transform params:
+cutoffNeeded = True
+cutoff = 2000
+cutoffMaxBelow = 35
+cutoffMaxFrame = 17
+autoVMax = True
+fracVMax = 0.1
+use2Droi = True
+roi = [400, 0, 82, 1064]
+cutoffMin = None
+cutoffMax = None
+condValue = 12.282344447902881
+convolve = True
+convolveWith = Si111
+convolveShow = True
+
+[Docks]
+floating = [False, False]
+active = 3D elastic energy scan
+
+[Geometry]
+mainWindow = (296, 55, 1590, 751)
+3D elastic energy scan = ()
+1D energy XES = ()
+
+[Undo]
+grouping = True
+
