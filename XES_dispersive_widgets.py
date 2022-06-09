@@ -3,6 +3,8 @@ __author__ = "Konstantin Klementiev"
 __date__ = "23 Jul 2021"
 # !!! SEE CODERULES.TXT !!!
 
+from functools import partial
+
 # import numpy as np
 from silx.gui import qt
 from silx.gui.plot.tools.roi import RegionOfInterestManager
@@ -27,8 +29,10 @@ class Tr0Widget(PropWidget):
 
     """
 
-    def __init__(self, parent=None, node=None, transform=None):
-        super(Tr0Widget, self).__init__(parent, node, transform)
+    name = 'mask Eiger'
+
+    def __init__(self, parent=None, node=None):
+        super().__init__(parent, node)
 
         self.roi = None
 
@@ -43,8 +47,8 @@ class Tr0Widget(PropWidget):
         cutoffPanel.setFlat(False)
         cutoffPanel.setTitle('pixel value cutoff')
         cutoffPanel.setCheckable(True)
-        self.registerPropWidget(cutoffPanel, cutoffPanel.title(),
-                                'cutoffNeeded')
+        self.registerPropWidget(
+            cutoffPanel, cutoffPanel.title(), 'cutoffNeeded', self.name)
         layoutC = qt.QVBoxLayout()
 
         layoutL = qt.QHBoxLayout()
@@ -53,10 +57,10 @@ class Tr0Widget(PropWidget):
         cutoff = qt.QSpinBox()
         cutoff.setToolTip(u'0 ≤ cutoff ≤ 1e8')
         cutoff.setMinimum(0)
-        cutoff.setMaximum(1e8)
+        cutoff.setMaximum(int(1e8))
         cutoff.setSingleStep(100)
-        self.registerPropWidget([cutoff, cutoffLabel], cutoffLabel.text(),
-                                'cutoff')
+        self.registerPropWidget(
+            [cutoff, cutoffLabel], cutoffLabel.text(), 'cutoff', self.name)
         layoutL.addWidget(cutoff)
         layoutC.addLayout(layoutL)
 
@@ -81,7 +85,8 @@ class Tr0Widget(PropWidget):
         vmaxPanel.setFlat(False)
         vmaxPanel.setTitle('auto colormap.vmax as')
         vmaxPanel.setCheckable(True)
-        self.registerPropWidget(vmaxPanel, vmaxPanel.title(), 'autoVMax')
+        self.registerPropWidget(
+            vmaxPanel, vmaxPanel.title(), 'autoVMax', self.name)
         layoutV = qt.QHBoxLayout()
         fracVMaxEdit = qt.QLineEdit()
         fracVMaxEdit.setMinimumWidth(32)
@@ -91,7 +96,7 @@ class Tr0Widget(PropWidget):
         fracVMaxLabel = qt.QLabel('× (max under cutoff)')
         self.registerPropWidget(
             (fracVMaxEdit, fracVMaxLabel), 'vmax fraction', 'fracVMax',
-            convertType=float)
+            self.name, convertType=float)
         layoutV.addWidget(fracVMaxLabel)
         vmaxPanel.setLayout(layoutV)
         layoutC.addWidget(vmaxPanel)
@@ -108,7 +113,7 @@ class Tr0Widget(PropWidget):
         # layoutR.setContentsMargins(0, 0, 0, 0)
         self.roiGeom = qt.QLabel('not defined')
         layoutR.addWidget(self.roiGeom)
-        self.registerPropWidget(self.roiGeom, 'roi geometry', 'roi')
+        self.registerPropWidget(self.roiGeom, 'roi geometry', 'roi', self.name)
         self.roiApplyDynamically = qt.QCheckBox('apply ROI dynamically')
         self.roiApplyDynamically.setChecked(True)
         layoutR.addWidget(self.roiApplyDynamically)
@@ -116,8 +121,9 @@ class Tr0Widget(PropWidget):
         self.roiApply.clicked.connect(self.updateROI)
         layoutR.addWidget(self.roiApply)
         self.roiPanel.setLayout(layoutR)
-        self.roiPanel.toggled.connect(self.use2Droi)
-        self.registerPropWidget(self.roiPanel, 'use2Droi', 'use2Droi')
+        self.roiPanel.toggled.connect(partial(self.use2Droi, self.roiPanel))
+        self.registerPropWidget(
+            self.roiPanel, 'use2Droi', 'use2Droi', self.name)
         layout.addWidget(self.roiPanel)
 
         layout.addStretch()
@@ -204,8 +210,8 @@ class Tr0Widget(PropWidget):
         self.roiGeom.setText('origin={0}; size={1}'.format(geom[:2], geom[2:]))
         self.updateProp('transformParams.roi', geom)
 
-    def use2Droi(self, on):
-        checkBox = self.sender()
+    def use2Droi(self, checkBox, on):
+        # checkBox = self.sender()
         if not checkBox.hasFocus():
             return
         if len(csi.selectedItems) == 0:
@@ -226,9 +232,10 @@ class Tr1Widget(PropWidget):
     test link: `MAX IV Laboratory <https://www.maxiv.lu.se/>`_
 
     """
+    name = 'project onto basis'
 
-    def __init__(self, parent=None, node=None, transform=None):
-        super(Tr1Widget, self).__init__(parent, node, transform)
+    def __init__(self, parent=None, node=None):
+        super().__init__(parent, node)
 
         layout = qt.QVBoxLayout()
 
@@ -250,29 +257,33 @@ class Tr1Widget(PropWidget):
         self.dcmCombo = qt.QComboBox()
         self.dcmCombo.addItems(xrt.crystals.keys())
         layoutB2.addWidget(self.dcmCombo, 1)
-        self.dcmCombo.currentTextChanged.connect(self.dcmTextChanged)
+        self.dcmCombo.currentTextChanged.connect(
+            partial(self.dcmTextChanged, self.dcmCombo))
         layoutB1.addLayout(layoutB2)
         dcmShow = qt.QCheckBox('show it')
-        self.registerPropWidget(dcmShow, 'show DCM band', 'convolveShow')
+        self.registerPropWidget(
+            dcmShow, 'show DCM band', 'convolveShow', self.name)
         layoutB1.addWidget(dcmShow)
         self.dcmPanel.setLayout(layoutB1)
-        self.dcmPanel.toggled.connect(self.dcmConvolve)
-        self.registerPropWidget(self.dcmPanel, 'convolve', 'convolve')
-        self.registerPropWidget((self.dcmCombo, dcmLabel),
-                                'convolve with dcm band', 'convolveWith')
+        self.dcmPanel.toggled.connect(partial(self.dcmConvolve, self.dcmPanel))
+        self.registerPropWidget(
+            self.dcmPanel, 'convolve', 'convolve', self.name)
+        self.registerPropWidget(
+            (self.dcmCombo, dcmLabel),
+            'convolve with dcm band', 'convolveWith', self.name)
         layout.addWidget(self.dcmPanel)
 
         layout.addStretch()
         self.setLayout(layout)
 
-    def dcmConvolve(self, on):
-        checkBox = self.sender()
+    def dcmConvolve(self, checkBox, on):
+        # checkBox = self.sender()
         if not checkBox.hasFocus():
             return
         self.updateProp('transformParams.convolve', on)
 
-    def dcmTextChanged(self, txt):
-        comboBox = self.sender()
+    def dcmTextChanged(self, comboBox, txt):
+        # comboBox = self.sender()
         if not comboBox.hasFocus():
             return
         if len(csi.selectedItems) == 0:

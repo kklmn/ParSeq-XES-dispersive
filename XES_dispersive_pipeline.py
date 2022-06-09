@@ -15,10 +15,10 @@ def make_pipeline(withGUI=False):
     csi.pipelineName = 'XES dispersive'
     csi.withGUI = withGUI
 
-    node1 = xsno.Node1()
-    node2 = xsno.Node2()
+    node1 = xsno.Node1(xswi.Tr0Widget if withGUI else None)
+    node2 = xsno.Node2(xswi.Tr1Widget if withGUI else None)
 
-    xstr.Tr0(node1, node1, xswi.Tr0Widget if withGUI else None)
-    xstr.Tr1(node1, node2, xswi.Tr1Widget if withGUI else None)
+    xstr.Tr0(node1, node1)
+    xstr.Tr1(node1, node2)
 
     csi.dataRootItem = csp.Spectrum('root')

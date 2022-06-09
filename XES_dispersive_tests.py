@@ -49,4 +49,4 @@ def load_test_data():
     transformParams0 = dict(use2Droi=True, roi=[400, 0, 82, 1064])
     spectrum0 = rootItem.insert_data(
         scanName, dataFormat=dataFormat0, copyTransformParams=False,
-        transformParams=transformParams0)[0]
+        transformParams=transformParams0, runDownstream=True)[0]

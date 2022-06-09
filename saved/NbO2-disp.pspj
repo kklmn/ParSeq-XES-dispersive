@@ -7,8 +7,8 @@ madeOf_relative = silx:..\data\20201112_b.h5::/entry10198
 dataFormat = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:c:\\ParSeq\\parseq_XES_dispersive\\data\\NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:c:\\ParSeq\\parseq_XES_dispersive\\data\\NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
 dataFormat_relative = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:..\\data\\NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:..\\data\\NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
 suffix = None
-originNode = 3D elastic energy scan
-terminalNode = None
+originNodeName = 3D elastic energy scan
+terminalNodeName = None
 colorTag = 1
 color = #1f77b4
 ;transform params:
