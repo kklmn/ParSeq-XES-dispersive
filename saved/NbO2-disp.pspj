@@ -1,16 +1,20 @@
-[Data]
+[Root]
 tree = ['20201112_b/entry10198']
+colorPolicy = loop1
+colorAutoUpdate = False
 
 [20201112_b/entry10198]
-madeOf = silx:c:\ParSeq\parseq_XES_dispersive\data\20201112_b.h5::/entry10198
-madeOf_relative = silx:..\data\20201112_b.h5::/entry10198
-dataFormat = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:c:\\ParSeq\\parseq_XES_dispersive\\data\\NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:c:\\ParSeq\\parseq_XES_dispersive\\data\\NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
-dataFormat_relative = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:..\\data\\NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:..\\data\\NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
+madeOf = silx:c:/ParSeq/parseq_XES_dispersive/data/20201112_b.h5::/entry10198
+madeOf_relative = silx:../data/20201112_b.h5::/entry10198
+dataFormat = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:c:/ParSeq/parseq_XES_dispersive/data/NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:c:/ParSeq/parseq_XES_dispersive/data/NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
+dataFormat_relative = {"dataSource": ["measurement/mono1_energy", "d[\"measurement/albaem01_ch1\"] + d[\"measurement/albaem01_ch2\"]", "silx:../data/NbO2_Kb13-inCircle-elastic-scan_96_data_000001.h5::/entry/data/data", "silx:../data/NbO2_Kb13-inCircle_94_data_000001.h5::/entry/data/data"], "slices": ["", "", "", "22, :, :"]}
 suffix = None
 originNodeName = 3D elastic energy scan
 terminalNodeName = None
+transformNames = each
 colorTag = 1
 color = #1f77b4
+plotProps = {'3D elastic energy scan': {}, '1D energy XES': {'xes': {'yaxis': 'left', 'symbolsize': 2, 'linewidth': 1.3, 'linestyle': '-'}}}
 ;transform params:
 cutoffNeeded = True
 cutoff = 2000
@@ -22,7 +26,6 @@ use2Droi = True
 roi = [400, 0, 82, 1064]
 cutoffMin = None
 cutoffMax = None
-condValue = 12.282344447902881
 convolve = True
 convolveWith = Si111
 convolveShow = True
@@ -32,7 +35,7 @@ floating = [False, False]
 active = 3D elastic energy scan
 
 [Geometry]
-mainWindow = (296, 55, 1590, 751)
+mainWindow = (253, 75, 1481, 720)
 3D elastic energy scan = ()
 1D energy XES = ()
 
