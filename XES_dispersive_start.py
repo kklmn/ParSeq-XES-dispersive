@@ -16,7 +16,7 @@ def main(withTestData=True, withGUI=True):
 
     if withGUI:
         node0 = list(csi.nodes.values())[0]
-        node0.fileNameFilters = ['*.h5', '*.dat']
+        node0.includeFilters = ['*.h5', '*.dat']
 
         from silx.gui import qt
         from parseq.gui.mainWindow import MainWindowParSeq
