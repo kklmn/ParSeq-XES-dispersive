@@ -47,8 +47,8 @@ class Tr0Widget(PropWidget):
         cutoffPanel.setFlat(False)
         cutoffPanel.setTitle('pixel value cutoff')
         cutoffPanel.setCheckable(True)
-        self.registerPropWidget(
-            cutoffPanel, cutoffPanel.title(), 'cutoffNeeded', self.name)
+        self.registerPropWidget(cutoffPanel, cutoffPanel.title(),
+                                'cutoffNeeded')
         layoutC = qt.QVBoxLayout()
 
         layoutL = qt.QHBoxLayout()
@@ -59,8 +59,8 @@ class Tr0Widget(PropWidget):
         cutoff.setMinimum(0)
         cutoff.setMaximum(int(1e8))
         cutoff.setSingleStep(100)
-        self.registerPropWidget(
-            [cutoff, cutoffLabel], cutoffLabel.text(), 'cutoff', self.name)
+        self.registerPropWidget([cutoff, cutoffLabel], cutoffLabel.text(),
+                                'cutoff')
         layoutL.addWidget(cutoff)
         layoutC.addLayout(layoutL)
 
@@ -85,8 +85,7 @@ class Tr0Widget(PropWidget):
         vmaxPanel.setFlat(False)
         vmaxPanel.setTitle('auto colormap.vmax as')
         vmaxPanel.setCheckable(True)
-        self.registerPropWidget(
-            vmaxPanel, vmaxPanel.title(), 'autoVMax', self.name)
+        self.registerPropWidget(vmaxPanel, vmaxPanel.title(), 'autoVMax')
         layoutV = qt.QHBoxLayout()
         fracVMaxEdit = qt.QLineEdit()
         fracVMaxEdit.setMinimumWidth(32)
@@ -94,9 +93,8 @@ class Tr0Widget(PropWidget):
             qt.QSizePolicy.Expanding, qt.QSizePolicy.Fixed)
         layoutV.addWidget(fracVMaxEdit)
         fracVMaxLabel = qt.QLabel('× (max under cutoff)')
-        self.registerPropWidget(
-            (fracVMaxEdit, fracVMaxLabel), 'vmax fraction', 'fracVMax',
-            self.name, convertType=float)
+        self.registerPropWidget((fracVMaxEdit, fracVMaxLabel), 'vmax fraction',
+                                'fracVMax', convertType=float)
         layoutV.addWidget(fracVMaxLabel)
         vmaxPanel.setLayout(layoutV)
         layoutC.addWidget(vmaxPanel)
@@ -113,7 +111,7 @@ class Tr0Widget(PropWidget):
         # layoutR.setContentsMargins(0, 0, 0, 0)
         self.roiGeom = qt.QLabel('not defined')
         layoutR.addWidget(self.roiGeom)
-        self.registerPropWidget(self.roiGeom, 'roi geometry', 'roi', self.name)
+        self.registerPropWidget(self.roiGeom, 'roi geometry', 'roi')
         self.roiApplyDynamically = qt.QCheckBox('apply ROI dynamically')
         self.roiApplyDynamically.setChecked(True)
         layoutR.addWidget(self.roiApplyDynamically)
@@ -122,8 +120,7 @@ class Tr0Widget(PropWidget):
         layoutR.addWidget(self.roiApply)
         self.roiPanel.setLayout(layoutR)
         self.roiPanel.toggled.connect(partial(self.use2Droi, self.roiPanel))
-        self.registerPropWidget(
-            self.roiPanel, 'use2Droi', 'use2Droi', self.name)
+        self.registerPropWidget(self.roiPanel, 'use2Droi', 'use2Droi')
         layout.addWidget(self.roiPanel)
 
         layout.addStretch()
@@ -261,16 +258,13 @@ class Tr1Widget(PropWidget):
             partial(self.dcmTextChanged, self.dcmCombo))
         layoutB1.addLayout(layoutB2)
         dcmShow = qt.QCheckBox('show it')
-        self.registerPropWidget(
-            dcmShow, 'show DCM band', 'convolveShow', self.name)
+        self.registerPropWidget(dcmShow, 'show DCM band', 'convolveShow')
         layoutB1.addWidget(dcmShow)
         self.dcmPanel.setLayout(layoutB1)
         self.dcmPanel.toggled.connect(partial(self.dcmConvolve, self.dcmPanel))
-        self.registerPropWidget(
-            self.dcmPanel, 'convolve', 'convolve', self.name)
-        self.registerPropWidget(
-            (self.dcmCombo, dcmLabel),
-            'convolve with dcm band', 'convolveWith', self.name)
+        self.registerPropWidget(self.dcmPanel, 'convolve', 'convolve')
+        self.registerPropWidget((self.dcmCombo, dcmLabel),
+                                'convolve with dcm band', 'convolveWith')
         layout.addWidget(self.dcmPanel)
 
         layout.addStretch()
