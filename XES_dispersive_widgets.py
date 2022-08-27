@@ -188,6 +188,8 @@ class Tr0Widget(PropWidget):
             self.node.widget.plot._plot.getXAxis().setLimits(*lims)
 
     def extraPlot(self):
+        if len(csi.selectedItems) == 0:
+            return
         self.setColormapMax()
         if self.node.widget.wasNeverPlotted:
             data = csi.selectedItems[0]

@@ -12,7 +12,6 @@ from . import XES_dispersive_widgets as xswi
 
 
 def make_pipeline(withGUI=False):
-    csi.pipelineName = 'XES dispersive'
     csi.withGUI = withGUI
 
     node1 = xsno.Node1(xswi.Tr0Widget if withGUI else None)

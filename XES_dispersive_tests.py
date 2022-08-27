@@ -41,6 +41,7 @@ def load_test_data():
         'd["measurement/albaem01_ch1"] + d["measurement/albaem01_ch2"]']
 
     rootItem = csi.dataRootItem
+    rootItem.kwargs['runDownstream'] = True
 
     slices = ['', '', elastic3Dcut, dispersive2Dcut]
     dataFormat0 = dict(
