@@ -11,10 +11,10 @@ that connect these nodes and widgets that set options and parameters of the
 transforms.
 
 <p align="center">
-  <img src="doc/_images/node1.png" width=1200 />
+  <img src="parseq_XES_dispersive/doc/_images/node1.png" width=1200 />
 </p>
 <p align="center">
-  <img src="doc/_images/node2.png" width=1200 />
+  <img src="parseq_XES_dispersive/doc/_images/node2.png" width=1200 />
 </p>
 
 Dependencies
@@ -27,8 +27,7 @@ How to use
 ----------
 
 Either install ParSeq and this pipeline application by their installers or put
-their folders near by (i.e. in the same folder), rename them as `parseq` and
-`parseq_XES_dispersive` and run `python XES_dispersive_start.py`. You can try
-it with `--test` to load test data and/or `--noGUI` but an assumed pattern is
-to load a project file; use the test project file located in
-`parseq_XES_dispersive/saved`.
+their main folders near by (i.e. in the same folder) and run
+`python XES_dispersive_start.py`. You can try it with `--test` to load test
+data and/or `--noGUI` but an assumed pattern is to load a project file; use the
+test project file located in `parseq_XES_dispersive/saved`.
