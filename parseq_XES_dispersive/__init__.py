@@ -8,8 +8,6 @@ This pipeline also serves as an example for creating analysis nodes, transforms
 that connect these nodes and widgets that set options and parameters of the
 transforms.
 """
-__author__ = "Konstantin Klementiev"
-__date__ = "23 Jul 2021"
 
 import os.path as osp
 
