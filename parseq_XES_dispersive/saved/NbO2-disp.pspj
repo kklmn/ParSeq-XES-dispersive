@@ -28,7 +28,6 @@ cutoffMin = None
 cutoffMax = None
 convolve = True
 convolveWith = Si111
-convolveShow = True
 
 [Docks]
 floating = [False, False]

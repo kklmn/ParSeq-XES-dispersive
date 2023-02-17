@@ -9,10 +9,10 @@ import scipy.linalg as spl
 
 import sys; sys.path.append('..')  # analysis:ignore
 from parseq.core import transforms as ctr
-from parseq.utils import math as uma
+# from parseq.utils import math as uma
 from parseq.third_party import xrt
 
-cpus = 'half'  # can be 'all' or 'half'
+cpus = 'half'  # can be int, 'all' or 'half'
 
 
 def _line(xs, ys):
@@ -73,7 +73,7 @@ class Tr1(ctr.Transform):
     defaultParams = dict(
         cutoffMin=None, cutoffMax=None,
         # condValue=0,
-        convolve=True, convolveWith='Si111', convolveShow=True)
+        convolve=True, convolveWith='Si111')
     nThreads = cpus
     # nProcesses = cpus
     # inArrays and outArrays needed only for multiprocessing/multithreading:

@@ -38,6 +38,7 @@ def main(withTestData=True, withGUI=True):
 
 
 if __name__ == '__main__':
+    # csi.DEBUG_LEVEL = 1
     withTestData = '--test' in sys.argv
     withGUI = '--noGUI' not in sys.argv
     main(withTestData=withTestData, withGUI=withGUI)

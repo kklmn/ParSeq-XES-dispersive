@@ -29,8 +29,6 @@ class Tr0Widget(PropWidget):
 
     """
 
-    name = 'mask Eiger'
-
     def __init__(self, parent=None, node=None):
         super().__init__(parent, node)
 
@@ -231,7 +229,7 @@ class Tr1Widget(PropWidget):
     test link: `MAX IV Laboratory <https://www.maxiv.lu.se/>`_
 
     """
-    name = 'project onto basis'
+    properties = {'show_rc': True}
 
     def __init__(self, parent=None, node=None):
         super().__init__(parent, node)
@@ -260,7 +258,8 @@ class Tr1Widget(PropWidget):
             partial(self.dcmTextChanged, self.dcmCombo))
         layoutB1.addLayout(layoutB2)
         dcmShow = qt.QCheckBox('show it')
-        self.registerPropWidget(dcmShow, 'show DCM band', 'convolveShow')
+        dcmShow.setChecked(self.properties['show_rc'])
+        dcmShow.toggled.connect(self.showRC)
         layoutB1.addWidget(dcmShow)
         self.dcmPanel.setLayout(layoutB1)
         self.dcmPanel.toggled.connect(partial(self.dcmConvolve, self.dcmPanel))
@@ -278,6 +277,10 @@ class Tr1Widget(PropWidget):
             return
         self.updateProp('transformParams.convolve', on)
 
+    def showRC(self, value):
+        self.properties['show_rc'] = value
+        csi.model.needReplot.emit(False)
+
     def dcmTextChanged(self, comboBox, txt):
         # comboBox = self.sender()
         if not comboBox.hasFocus():
@@ -292,13 +295,16 @@ class Tr1Widget(PropWidget):
             return
         data = csi.selectedItems[0]
         dtparams = data.transformParams
-        if dtparams['convolve'] and dtparams['convolveShow']:
-            xtal = dtparams['convolveWith']
+        plot = self.node.widget.plot
+        ymax = plot.getYAxis().getLimits()[1]
+        xtal = dtparams['convolveWith']
+        legend = 'rc({0})'.format(xtal)
+        if dtparams['convolve'] and self.properties['show_rc']:
             if xrt.rc[xtal] is not None:
-                plot = self.node.widget.plot
-                legend = 'rc({0})'.format(xtal)
                 plot.addCurve(
-                    data.energy, xrt.rc[xtal]*data.xes.max(), linestyle='-',
+                    data.energy, xrt.rc[xtal]*ymax, linestyle='-',
                     symbol='.', color='gray', legend=legend, resetzoom=False)
                 curve = plot.getCurve(legend)
                 curve.setSymbolSize(3)
+        else:
+            plot.remove(legend, kind='curve')
