@@ -34,7 +34,7 @@ to load a project file; use the test project file located in
 
 setup(
     name='parseq_XES_dispersive',
-    version='0.3.1',
+    version='0.3.2',
     description='A pipeline for data processing of energy dispersive XES',
     long_description=long_description,
     long_description_content_type='text/x-rst',
