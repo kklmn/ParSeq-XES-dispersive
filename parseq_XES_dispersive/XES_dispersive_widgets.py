@@ -279,7 +279,7 @@ class Tr1Widget(PropWidget):
 
     def showRC(self, value):
         self.properties['show_rc'] = value
-        csi.model.needReplot.emit(False)
+        csi.model.needReplot.emit(False, True, 'showRC')
 
     def dcmTextChanged(self, comboBox, txt):
         # comboBox = self.sender()

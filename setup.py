@@ -51,7 +51,7 @@ setup(
     package_data={
         'parseq_XES_dispersive': ['*.py', '*.md', 'LICENSE',
                                   'data/*.*', 'doc/_images/*.*', 'saved/*.*']},
-    scripts=['XES_dispersive_start.py'],
+    scripts=['parseq_XES_dispersive/XES_dispersive_start.py'],
     install_requires=['numpy>=1.8.0', 'scipy>=0.17.0', 'matplotlib>=2.0.0',
                       'sphinx>=1.6.2', 'h5py', 'silx', 'hdf5plugin'],
     classifiers=['Development Status :: 3 - Alpha',
